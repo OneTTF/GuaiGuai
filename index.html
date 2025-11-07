@@ -94,85 +94,110 @@
 				}
 			}
 
-			/* 启动按钮样式 */
-			#startOverlay {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100vw;
-				height: 100vh;
-				background: rgba(0, 0, 0, 0.85);
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				z-index: 9999999;
-				backdrop-filter: blur(10px);
-			}
+			/* 启动按钮样式 - 优化版 */
+#startOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(24, 28, 40, 0.95); /* 深灰蓝背景更具科技感 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999999;
+  backdrop-filter: blur(6px); /* 降低模糊度，突出内容 */
+  transition: opacity 0.6s ease;
+}
 
-			#startButton {
-				padding: 20px 50px;
-				font-size: 24px;
-				font-weight: bold;
-				color: #fff;
-				background: linear-gradient(135deg, #ff6b9d, #c44569);
-				border: none;
-				border-radius: 50px;
-				cursor: pointer;
-				box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
-				transition: all 0.3s ease;
-				animation: pulse 2s ease-in-out infinite;
-			}
+/* 新增标题样式 */
+#startOverlay .overlay-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
 
-			#startButton:hover {
-				transform: scale(1.05);
-				box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
-			}
+/* 新增副标题样式 */
+#startOverlay .overlay-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 36px;
+  max-width: 500px;
+  text-align: center;
+  line-height: 1.5;
+}
 
-			#startButton:active {
-				transform: scale(0.95);
-			}
+#startButton {
+  padding: 16px 48px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4361ee, #3a0ca3); /* 蓝紫渐变更具活力 */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(67, 97, 238, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pulse 2.2s ease-in-out infinite;
+}
 
-			@keyframes pulse {
-				0%, 100% {
-					transform: scale(1);
-				}
-				50% {
-					transform: scale(1.05);
-				}
-			}
+#startButton:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 32px rgba(67, 97, 238, 0.6);
+  background: linear-gradient(135deg, #3a0ca3, #2a096b); /* hover时渐变加深 */
+}
 
-			#startOverlay p {
-				color: #fff;
-				font-size: 18px;
-				margin-bottom: 30px;
-				text-align: center;
-				opacity: 0.9;
-			}
+#startButton:active {
+  transform: scale(0.96);
+}
 
-			#musicStatus {
-				position: fixed;
-				bottom: 20px;
-				right: 20px;
-				padding: 10px 20px;
-				background: rgba(0, 0, 0, 0.7);
-				color: #fff;
-				border-radius: 20px;
-				font-size: 14px;
-				z-index: 10000;
-				display: none;
-			}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(67, 97, 238, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 10px 28px rgba(67, 97, 238, 0.5);
+  }
+}
 
-			#musicStatus.show {
-				display: block;
-			}
+#musicStatus {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: rgba(24, 28, 40, 0.85); /* 与overlay背景呼应 */
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 10000;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+#musicStatus.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
 		</style>
 	</head>
 	<body>
-		<!-- 启动界面 -->
-		<div id="startOverlay">	
-			<button id="startButton">开始体验</button>
-		</div>
+  <!-- 启动界面 - 新增标题和副标题 -->
+  <div id="startOverlay">
+    <h2 class="overlay-title">欢迎开启</h2>
+    <p class="overlay-desc">点击按钮，解锁专属体验</p>
+    <button id="startButton">开始体验</button>
+  </div>
+
+
+
+
 
 		<div id="board"></div>
 		<div id="musicStatus">🎵音乐播放中...</div>
